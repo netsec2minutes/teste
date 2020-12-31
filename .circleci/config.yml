@@ -1,22 +1,21 @@
-workflow:
+version: 2.1
+
+executors:
+  horusec-executor:
+    machine:
+      image: ubuntu-1604:202004-01
+
 jobs:
-  local_image_scan:
-    executor: anchore/anchore_engine
+  horusec:
+    executor: horusec-executor
     steps:
-      - setup_remote_docker
       - checkout
       - run:
-          command: 'docker build -t "example/test:latest" .'
-          name: build container
-      - anchore/analyze_local_image:
-          dockerfile_path: ./Dockerfile
-          image_name: 'example/test:latest'
-          policy_bundle_file_path: .circleci/.anchore/policy_bundle.json
-          policy_failure: true
-          timeout: '500'
-      - anchore/parse_reports
-      - store_artifacts:
-          path: anchore-reports
-orbs:
-  anchore: anchore/anchore-engine@1.6.0
-version: 2.1
+          name: Horusec Security Test
+          command: |
+            curl -fsSL https://horusec.io/bin/install.sh | bash
+            horusec start -p="./" -e="true"
+workflows:
+  pipeline:
+    jobs:
+      - horusec
