@@ -1,3 +1,4 @@
+workflow:
 jobs:
   local_image_scan:
     executor: anchore/anchore_engine
