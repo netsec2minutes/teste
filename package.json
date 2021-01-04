@@ -8,8 +8,5 @@
     "test": "node index.test.js"
   },
   "author": "Sam Clement",
-  "license": "ISC",
-  "devDependencies": {
-    "tape": "^4.6.3"
-  }
-}
+  "license": "ISC"
+ }
