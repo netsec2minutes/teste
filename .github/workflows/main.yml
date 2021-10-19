@@ -12,13 +12,6 @@ jobs:
     - name: build docker image
       run: docker build -t nodejsapp .
 
-name: njsscan
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-jobs:
   njsscan:
     runs-on: ubuntu-latest
     name: njsscan check
@@ -28,4 +21,4 @@ jobs:
       id: njsscan
       uses: ajinabraham/njsscan-action@v5
       with:
-        args: '.'        
+       args: '.'        
