@@ -13,6 +13,7 @@ jobs:
       run: docker build -t nodejsapp .
 
   njsscan:
+    needs: build
     runs-on: ubuntu-latest
     name: njsscan check
     steps:
