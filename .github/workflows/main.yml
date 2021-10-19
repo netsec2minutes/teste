@@ -1,5 +1,9 @@
-name: Basic Build Action
-on: [push]
+name: Build and Scan
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
 
 jobs:
   build:
@@ -13,12 +17,7 @@ jobs:
       run: docker build -t nodejsapp .
 
 
-on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
-jobs:
+
   njsscan:
     needs: build
     runs-on: ubuntu-latest
