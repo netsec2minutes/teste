@@ -1,0 +1,31 @@
+name: Basic Build Action
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: npm install
+      run: |
+        npm install
+    - name: build docker image
+      run: docker build -t nodejsapp .
+
+name: njsscan
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  njsscan:
+    runs-on: ubuntu-latest
+    name: njsscan check
+    steps:
+    - uses: actions/checkout@v1
+    - name: njsscan
+      id: njsscan
+      uses: ajinabraham/njsscan-action@v5
+      with:
+        args: '.'        
