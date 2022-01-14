@@ -17,6 +17,19 @@ jobs:
       run: docker build -t nodejsapp .
 
 
+  conviso-sast:
+   runs-on: ubuntu-latest
+   container:
+     image: convisoappsec/flowcli
+     env:
+       FLOW_API_KEY:  ${{secrets.FLOW_API_KEY}}
+       FLOW_PROJECT_CODE: "DVWATESTS_00005"
+   steps:
+   - uses: actions/checkout@v2
+
+   - name: Run SAST
+     run: flow sast run 
+
 
   njsscan:
     needs: build
