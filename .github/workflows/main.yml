@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ master, main ]
 
-jobs:
+jobs:  
   build:
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +15,11 @@ jobs:
         npm install
     - name: build docker image
       run: docker build -t nodejsapp .
-
+  
+      # uses: fike/horusec-action@14e6a2f96613606ceef2e42bb3791580bf508263
+     - uses: fike/horusec-action@v0.2.1
+     - with:
+        arguments: # optional, default is 
 
   conviso-sast:
    runs-on: ubuntu-latest
