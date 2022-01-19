@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Run Horusec
         id: run_horusec
-        uses: fike/horusec-action@v0.
+        uses: fike/horusec-action@v0.1
   build:
     runs-on: ubuntu-latest
     steps:
