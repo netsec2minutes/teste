@@ -1,9 +1,4 @@
-name: Build and Scan
-on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+on: [push]
 
 jobs:
   checking_code:
@@ -14,7 +9,16 @@ jobs:
         id: run_horusec
         uses: fike/horusec-action@v0.1
         with:
-          arguments: -p="./" --ignore="**/.vscode/**, **/*.env, **/.mypy_cache/**, **/tests/**"
+          arguments: --config-file-path=horusec-config.json
+
+name: Build and Scan
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
