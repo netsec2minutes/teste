@@ -1,16 +1,3 @@
-on: [push]
-
-jobs:
-  checking_code:
-    runs-on: ubuntu-latest
-    name: Horusec Scan
-    steps:
-      - name: Run Horusec
-        id: run_horusec
-        uses: fike/horusec-action@v0.1
-        with:
-          arguments: --config-file-path=horusec-config.json
-
 name: Build and Scan
 on:
   push:
@@ -19,6 +6,15 @@ on:
     branches: [ master, main ]
 
 jobs:
+  checking_code:
+    runs-on: ubuntu-latest
+    name: Horusec Scan
+    steps:
+      - name: Run Horusec
+        id: run_horusec
+        uses: fike/horusec-action@v0.2.1
+        with:
+          arguments: --config-file-path=horusec-config.json
   build:
     runs-on: ubuntu-latest
     steps:
