@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 COPY --chown=node:node . .
-
+ADD file1 file2
 USER node
 
 EXPOSE 3000
